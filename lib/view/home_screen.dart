@@ -13,13 +13,20 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home View')),
-      body: Center(child: GestureDetector(
-          onTap: (){
-          UserViewModel().remove();
-          Navigator.pushNamed(context, RoutesName.login);
-          },
-          child: Text('Logout'))),
+      appBar: AppBar(actions: [
+        GestureDetector(
+            onTap: (){
+              UserViewModel().remove();
+              Navigator.pushNamed(context, RoutesName.login);
+            },
+            child: Center(child: Text('Logout')))
+      ],
+      automaticallyImplyLeading: false),
+      body: Center(child: Column(
+        children: [
+
+        ],
+      )),
     );
   }
 }
