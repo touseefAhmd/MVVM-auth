@@ -9,7 +9,7 @@ class AppExceptions implements Exception {
   }
 }
 class FetchDataExceptions extends AppExceptions{
-  FetchDataExceptions([String? message]) : super(message,'Error during communication');
+  FetchDataExceptions([String? message]) : super(message,'Error during communication 1');
 }
 
 class BadRequestExceptions extends AppExceptions{
@@ -17,5 +17,5 @@ class BadRequestExceptions extends AppExceptions{
 }
 
 class UnauthorisedExceptions extends AppExceptions{
-  UnauthorisedExceptions([String? message]) : super(message,'Error during communication');
+  UnauthorisedExceptions([String? message]) : super(message,'Error during communication unautho');
 }

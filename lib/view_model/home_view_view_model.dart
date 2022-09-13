@@ -6,10 +6,19 @@ import 'package:mvvm_r_a_p_i_p/repositories/home_repository.dart';
 class HomeViewViewModel extends ChangeNotifier{
 final myrepo = HomeRepository();
 ApiResponse<MoviesListModel> moviesList = ApiResponse.loading();
+setMoviesList(ApiResponse<MoviesListModel> response){
+moviesList = response;
+notifyListeners();
+}
 Future <void> fetchMoviesList()async{
+  setMoviesList(ApiResponse.loading());
   myrepo.fetchMoviesList().then((value){
+    setMoviesList(ApiResponse.completed(value));
 
-  }).onError((error, stackTrace) => null);
+  }).onError((error, stackTrace){
+    setMoviesList(ApiResponse.error(error.toString()));
+
+  });
 
 }
 

@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:mvvm_r_a_p_i_p/model/user_model.dart';
 import 'package:mvvm_r_a_p_i_p/utils/routes_name.dart';
+import 'package:mvvm_r_a_p_i_p/view_model/user_view_viewModel.dart';
+import 'package:provider/provider.dart';
 
 import '../repositories/auth_repository.dart';
 
@@ -22,6 +25,9 @@ class AuthViewModel with ChangeNotifier{
      setLoading(true);
     myRepository.logInApi(data).then((value){
       setLoading(false);
+    final userPreferences = Provider.of<UserViewModel>(context,listen:false);
+    userPreferences.saveUser(UserModel(token: value['token'].toString()));
+
       Navigator.pushNamed(context, RoutesName.home);
       if(kDebugMode){
         print(value.toString());
